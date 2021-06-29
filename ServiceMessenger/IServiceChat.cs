@@ -12,18 +12,18 @@ namespace ServiceMessenger
     public interface IServiceChat
     {
         [OperationContract]
-        int Connection();
+        int Connection(string login);
 
         [OperationContract]
-        void Diconnection();
+        void Diconnection(int id);
 
         [OperationContract(IsOneWay = true)]
-        void SendMsg(string msg);
+        void SendMsg(string msg, int id);
     }
 
     public interface ISrverChatCallBack
     {
-        [OperationContract]
-        void MsgCallBack();
+        [OperationContract(IsOneWay = true)]
+        void MsgCallBack(string msg);
     }
 }
