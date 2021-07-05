@@ -4,6 +4,9 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using System.Data;
+using Npgsql;
+using System.Windows.Forms;
 
 namespace ServiceMessenger
 {
@@ -38,27 +41,40 @@ namespace ServiceMessenger
             if(user != null)
             {
                 users.Remove(user);
-                SendMsg(user.ID + " Removed", 0);
+                //SendMsg(user.ID + " Removed", 0);
             }
         }
 
-        public void SendMsg(string msg, int id)
+        public void SendMsg(string msg, int idFrom, int idTo)
         {
-            foreach(var item in users)
+            string ans = DateTime.Now.ToShortTimeString();
+
+            var userFrom = users.FirstOrDefault(i => i.ID == idFrom);
+            var userTo = users.FirstOrDefault(i => i.ID == idTo);
+
+            if (userTo != null)
             {
-                string ans = DateTime.Now.ToShortTimeString();
-
-                var user = users.FirstOrDefault(i => i.ID == id);
-
-                if (user != null)
-                {
-                    ans += ", " + user.ID + ": ";
-                }
-
-                ans += msg;
-
-                item.operationContext.GetCallbackChannel<ISrverChatCallBack>().MsgCallBack(ans);
+                ans += ", " + userFrom.ID + ": ";
             }
+
+            ans += msg;
+
+            userFrom.operationContext.GetCallbackChannel<ISrverChatCallBack>().MsgCallBack(ans, idFrom);
+            userTo.operationContext.GetCallbackChannel<ISrverChatCallBack>().MsgCallBack(ans, idTo);
+        }
+
+        public bool DBconnection(string connStr) 
+        {
+            NpgsqlConnection pg = new NpgsqlConnection(connStr);
+
+            pg.Open();
+
+            if (pg.FullState == ConnectionState.Broken || pg.FullState == ConnectionState.Closed)
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }

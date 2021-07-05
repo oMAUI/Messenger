@@ -29,81 +29,115 @@ namespace Mora
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.components = new System.ComponentModel.Container();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.UserCardBox = new System.Windows.Forms.FlowLayoutPanel();
+            this.pMsgBox = new System.Windows.Forms.FlowLayoutPanel();
+            this.pMsgBoxUser = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.tbMsgBox = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // textBox2
+            // timer1
             // 
-            this.textBox2.Location = new System.Drawing.Point(210, 12);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(346, 70);
-            this.textBox2.TabIndex = 1;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // button1
+            // UserCardBox
             // 
-            this.button1.Location = new System.Drawing.Point(55, 35);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.UserCardBox.AutoScroll = true;
+            this.UserCardBox.Location = new System.Drawing.Point(43, 126);
+            this.UserCardBox.Name = "UserCardBox";
+            this.UserCardBox.Size = new System.Drawing.Size(200, 100);
+            this.UserCardBox.TabIndex = 7;
             // 
-            // button2
+            // pMsgBox
             // 
-            this.button2.Location = new System.Drawing.Point(713, 397);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.pMsgBox.AutoScroll = true;
+            this.pMsgBox.Location = new System.Drawing.Point(289, 126);
+            this.pMsgBox.Name = "pMsgBox";
+            this.pMsgBox.Size = new System.Drawing.Size(200, 100);
+            this.pMsgBox.TabIndex = 8;
+            this.pMsgBox.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.pMsgBox_Wheel);
             // 
-            // textBox3
+            // pMsgBoxUser
             // 
-            this.textBox3.Location = new System.Drawing.Point(12, 378);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(695, 60);
-            this.textBox3.TabIndex = 4;
+            this.pMsgBoxUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pMsgBoxUser.AutoScroll = true;
+            this.pMsgBoxUser.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.pMsgBoxUser.Location = new System.Drawing.Point(514, 126);
+            this.pMsgBoxUser.Name = "pMsgBoxUser";
+            this.pMsgBoxUser.Size = new System.Drawing.Size(200, 100);
+            this.pMsgBoxUser.TabIndex = 9;
+            this.pMsgBoxUser.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.pMsgBoxUser_Wheel);
             // 
-            // listBox1
+            // panel1
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(12, 105);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(776, 251);
-            this.listBox1.TabIndex = 5;
+            this.panel1.Location = new System.Drawing.Point(289, 232);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(200, 100);
+            this.panel1.TabIndex = 10;
+            // 
+            // panel2
+            // 
+            this.panel2.Location = new System.Drawing.Point(514, 232);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(200, 100);
+            this.panel2.TabIndex = 11;
+            // 
+            // tbMsgBox
+            // 
+            this.tbMsgBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbMsgBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tbMsgBox.Location = new System.Drawing.Point(12, 378);
+            this.tbMsgBox.Multiline = true;
+            this.tbMsgBox.Name = "tbMsgBox";
+            this.tbMsgBox.Size = new System.Drawing.Size(507, 60);
+            this.tbMsgBox.TabIndex = 4;
+            this.tbMsgBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbMsgBox_KeyUp);
+            // 
+            // textBox1
+            // 
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox1.Location = new System.Drawing.Point(55, 2);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(71, 28);
+            this.textBox1.TabIndex = 12;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.pMsgBoxUser);
+            this.Controls.Add(this.pMsgBox);
+            this.Controls.Add(this.UserCardBox);
+            this.Controls.Add(this.tbMsgBox);
             this.Name = "Form1";
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.FlowLayoutPanel UserCardBox;
+        private System.Windows.Forms.FlowLayoutPanel pMsgBox;
+        private System.Windows.Forms.FlowLayoutPanel pMsgBoxUser;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.TextBox tbMsgBox;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 

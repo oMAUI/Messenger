@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HostMoraMsgr", "..\HostMora
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mora", "..\Mora\Mora.csproj", "{5A73EDC8-BC3F-4164-951A-BDF46FB437E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MORA Msngr", "..\MORA Msngr\MORA Msngr.csproj", "{C5E0ADCF-FCF1-40B1-AF0A-F26D3033C92E}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,10 +27,6 @@ Global
 		{5A73EDC8-BC3F-4164-951A-BDF46FB437E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A73EDC8-BC3F-4164-951A-BDF46FB437E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A73EDC8-BC3F-4164-951A-BDF46FB437E8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C5E0ADCF-FCF1-40B1-AF0A-F26D3033C92E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C5E0ADCF-FCF1-40B1-AF0A-F26D3033C92E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C5E0ADCF-FCF1-40B1-AF0A-F26D3033C92E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C5E0ADCF-FCF1-40B1-AF0A-F26D3033C92E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

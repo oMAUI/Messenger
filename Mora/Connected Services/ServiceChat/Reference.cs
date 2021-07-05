@@ -8,6 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.Threading.Tasks;
+
 namespace Mora.ServiceChat {
     
     
@@ -28,17 +30,23 @@ namespace Mora.ServiceChat {
         System.Threading.Tasks.Task DiconnectionAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiceChat/SendMsg")]
-        void SendMsg(string msg, int id);
+        void SendMsg(string msg, int idFrom, int idTo);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiceChat/SendMsg")]
-        System.Threading.Tasks.Task SendMsgAsync(string msg, int id);
+        System.Threading.Tasks.Task SendMsgAsync(string msg, int idFrom, int idTo);
+
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IServiceChat/DBconnection", ReplyAction = "http://tempuri.org/IServiceChat/DBconnectionResponse")]
+        bool DBconnection(string connStr);
+
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IServiceChat/DBconnection", ReplyAction = "http://tempuri.org/IServiceChat/DBconnectionResponse")]
+        System.Threading.Tasks.Task<bool> DBconnectionAsync(string connStr);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface IServiceChatCallback {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiceChat/MsgCallBack")]
-        void MsgCallBack(string msg);
+        void MsgCallBack(string msg, int id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -85,12 +93,21 @@ namespace Mora.ServiceChat {
             return base.Channel.DiconnectionAsync(id);
         }
         
-        public void SendMsg(string msg, int id) {
-            base.Channel.SendMsg(msg, id);
+        public void SendMsg(string msg, int idFrom, int idTo) {
+            base.Channel.SendMsg(msg, idFrom, idTo);
         }
         
-        public System.Threading.Tasks.Task SendMsgAsync(string msg, int id) {
-            return base.Channel.SendMsgAsync(msg, id);
+        public System.Threading.Tasks.Task SendMsgAsync(string msg, int idFrom, int idTo) {
+            return base.Channel.SendMsgAsync(msg, idFrom, idTo);
+        }
+        public bool DBconnection(string connStr)
+        {
+            return base.Channel.DBconnection(connStr);
+        }
+
+        public Task<bool> DBconnectionAsync(string connStr)
+        {
+            return base.Channel.DBconnectionAsync(connStr);
         }
     }
 }

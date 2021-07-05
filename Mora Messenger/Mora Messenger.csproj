@@ -46,7 +46,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Design\Button\UserCard.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Design\LayOutForm1.cs" />
+    <Compile Include="Design\UIControls\MsgBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Design\UIControls\Rounding.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -81,5 +87,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

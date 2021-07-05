@@ -18,12 +18,15 @@ namespace ServiceMessenger
         void Diconnection(int id);
 
         [OperationContract(IsOneWay = true)]
-        void SendMsg(string msg, int id);
+        void SendMsg(string msg, int idFrom, int idTo);
+
+        [OperationContract]
+        bool DBconnection(string connStr);
     }
 
     public interface ISrverChatCallBack
     {
         [OperationContract(IsOneWay = true)]
-        void MsgCallBack(string msg);
+        void MsgCallBack(string msg, int id);
     }
 }
