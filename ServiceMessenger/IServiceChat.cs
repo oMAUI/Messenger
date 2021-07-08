@@ -22,6 +22,12 @@ namespace ServiceMessenger
 
         [OperationContract]
         bool DBconnection(string connStr);
+
+        [OperationContract]
+        bool AddUserInDB(string login, string password);
+
+        [OperationContract]
+        int LoginUser(string login, string password);
     }
 
     public interface ISrverChatCallBack

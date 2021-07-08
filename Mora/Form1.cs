@@ -18,6 +18,7 @@ namespace Mora
     {
         ServiceChatClient client;
         private LayOutForm1 layOut;
+        SignUpWindow signUpWindow;
 
         List<UserCard> userCard = new List<UserCard>();
         List<string> name = new List<string>() { "salim", "valera", "islam", "mam", "pap", "liana", "Inal", "pirt", "sirt", "cirt", "lala", "topala" };
@@ -35,8 +36,13 @@ namespace Mora
             this.WindowState = FormWindowState.Maximized;
             this.BackColor = Color.FromArgb(24, 32, 38);
 
-            timer1.Enabled = true;
+            timer1.Enabled = false;
             timer1.Interval = 1;
+
+            this.UserCardBox.AutoScroll = true;
+            this.UserCardBox.AutoScrollPosition = new Point(-20, -20);
+            this.UserCardBox.VerticalScroll.Visible = false;
+            this.UserCardBox.HorizontalScroll.Visible = false;
 
             tbMsgBox.BackColor = Color.FromArgb(54, 62, 68);
             //pMsgBox.Visible = false;
@@ -49,7 +55,7 @@ namespace Mora
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            client.Diconnection(id);
+            //client.Diconnection(id);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -65,12 +71,19 @@ namespace Mora
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            client = new ServiceChatClient(new System.ServiceModel.InstanceContext(this));
-            id = client.Connection("Mora");
+            //this.Hide();
+            //signUpWindow = new SignUpWindow();
+            //signUpWindow.ShowDialog();
+            //this.Show();
 
-            textBox1.Text = id.ToString();
+            //client = new ServiceChatClient(new System.ServiceModel.InstanceContext(this));
+            //id = client.Connection("Mora");
+
+
 
             //bool db = client.DBconnection("Server=95.217.232.188;Port=7777;Username=habitov;Password=habitov");
+
+            timer1.Enabled = true;
 
             pMsgBox.BackColor = this.BackColor;
             pMsgBox.Size = new Size(this.Width / 4, this.Height - 200);
@@ -89,8 +102,8 @@ namespace Mora
             panel2.Size = new Size(20, pMsgBoxUser.Height);
             panel2.Location = new Point(pMsgBoxUser.Location.X + pMsgBoxUser.Width - 20, pMsgBoxUser.Location.Y);
 
-            UserCardBox.BackColor = sidebar;
-            UserCardBox.Size = new Size(this.Width / 4, this.Height - 100);
+            //UserCardBox.BackColor = sidebar;
+            UserCardBox.Size = new Size(this.Width / 4 + 10, this.Height - 150);
             UserCardBox.Location = new Point(0, 110);
 
             UserCard mainCard = new UserCard();
@@ -99,20 +112,21 @@ namespace Mora
             mainCard.BackColor = Color.FromArgb(11, 57, 72);
             Controls.Add(mainCard);
 
-            Random rand = new Random();
-
             int startLocation = 110;
 
+            Random rand = new Random();
             for (int i = 0; i < 25; i++)
             {
                 UserCard uCard = new UserCard();
-                uCard.Location = new Point(10, startLocation);
+                uCard.Location = new Point(10, 500);
                 uCard.Text = name[rand.Next(0, name.Count)];
+                uCard.Visible = true;
 
                 UserCardBox.Controls.Add(uCard);
-
-                startLocation += 105;
             }
+
+            int a = UserCardBox.Controls.Count;
+            int b;
         }
 
         #region Design
@@ -121,11 +135,9 @@ namespace Mora
         {
             layOut = new LayOutForm1();
 
-            layOut.Panel(g, 0, 0, this.Width / 4 - 10, this.Height, 14, 22, 28);
-            layOut.Panel(g, 0, 0, this.Width / 4 - 10, 100, 61, 90, 128);
-            layOut.Panel(g, this.Width / 4 + 1, this.Height - 120, this.Width * 3 / 4, 120, 44, 52, 58);
-
-
+            //layOut.Panel(g, 0, 0, this.Width / 4 - 10, this.Height, 14, 22, 28);
+            //layOut.Panel(g, 0, 0, this.Width / 4 - 10, 100, 61, 90, 128);
+            //layOut.Panel(g, this.Width / 4 + 1, this.Height - 120, this.Width * 3 / 4, 120, 44, 52, 58);
 
             layOut.EllipseMsg(g, this.Width / 4 + 1 + 10, this.Height - 105, this.Width * 3 / 4 - 40, 50, 54, 62, 68);
 
@@ -135,9 +147,9 @@ namespace Mora
 
         public void drawMsgBox(int id, string msg)
         {
-            MsgBox msgBox = new MsgBox(tbMsgBox.Text);
+            MsgBox msgBox = new MsgBox(msg);
 
-            var msgBox2 = new MsgBox(tbMsgBox.Text);
+            var msgBox2 = new MsgBox(msg);
             msgBox2.Text = "";
             msgBox2.BackColor = this.BackColor;
 
@@ -154,6 +166,8 @@ namespace Mora
 
             pMsgBoxUser.VerticalScroll.Value = pMsgBoxUser.VerticalScroll.Maximum;
             pMsgBox.VerticalScroll.Value = pMsgBox.VerticalScroll.Maximum;
+
+            tbMsgBox.Text = "";
         }
 
         #endregion
@@ -172,10 +186,13 @@ namespace Mora
         {
             if (e.KeyCode == Keys.Enter && tbMsgBox.Text.Length > 0)
             {
-                client.SendMsg(tbMsgBox.Text, this.id, Convert.ToInt32(textBox1.Text));
-                tbMsgBox.Text = "";
+                //client.SendMsg(tbMsgBox.Text, this.id, Convert.ToInt32(textBox1.Text));
+                //tbMsgBox.Text = "";
                 //tableMsgBox.Controls.Add(msgBox, 1, 1);
+                drawMsgBox(1, tbMsgBox.Text);
             }
+
+            
         }
 
         private void pMsgBox_Wheel(object sender, MouseEventArgs e)
@@ -186,6 +203,11 @@ namespace Mora
         private void pMsgBoxUser_Wheel(object sender, MouseEventArgs e)
         {
             pMsgBox.VerticalScroll.Value = pMsgBoxUser.VerticalScroll.Value;
+        }
+
+        private void registerButton1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -40,6 +40,18 @@ namespace Mora.ServiceChat {
 
         [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IServiceChat/DBconnection", ReplyAction = "http://tempuri.org/IServiceChat/DBconnectionResponse")]
         System.Threading.Tasks.Task<bool> DBconnectionAsync(string connStr);
+
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IServiceChat/AddUserInDB")]
+        bool AddUserInDB(string login, string password);
+
+        [System.ServiceModel.OperationContractAttribute( Action = "http://tempuri.org/IServiceChat/AddUserInDB")]
+        System.Threading.Tasks.Task<bool> AddUserInDBAsync(string login, string password);
+
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IServiceChat/LoginUser")]
+        int LoginUser(string login, string password);
+
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IServiceChat/LoginUser")]
+        System.Threading.Tasks.Task<int> LoginUserAsync(string login, string password);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -108,6 +120,26 @@ namespace Mora.ServiceChat {
         public Task<bool> DBconnectionAsync(string connStr)
         {
             return base.Channel.DBconnectionAsync(connStr);
+        }
+
+        public bool AddUserInDB(string login, string password)
+        {
+            return base.Channel.AddUserInDB(login, password);
+        }
+
+        public Task<bool> AddUserInDBAsync(string login, string password)
+        {
+            return base.Channel.AddUserInDBAsync(login, password);
+        }
+
+        public int LoginUser(string login, string password)
+        {
+            return base.Channel.LoginUser(login, password);
+        }
+
+        public System.Threading.Tasks.Task<int> LoginUserAsync(string login, string password)
+        {
+            return base.Channel.LoginUserAsync(login, password);
         }
     }
 }

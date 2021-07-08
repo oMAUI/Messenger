@@ -31,26 +31,17 @@ namespace Mora
         {
             this.components = new System.ComponentModel.Container();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.UserCardBox = new System.Windows.Forms.FlowLayoutPanel();
             this.pMsgBox = new System.Windows.Forms.FlowLayoutPanel();
             this.pMsgBoxUser = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.tbMsgBox = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.UserCardBox = new System.Windows.Forms.FlowLayoutPanel();
             this.SuspendLayout();
             // 
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // UserCardBox
-            // 
-            this.UserCardBox.AutoScroll = true;
-            this.UserCardBox.Location = new System.Drawing.Point(43, 126);
-            this.UserCardBox.Name = "UserCardBox";
-            this.UserCardBox.Size = new System.Drawing.Size(200, 100);
-            this.UserCardBox.TabIndex = 7;
             // 
             // pMsgBox
             // 
@@ -97,27 +88,24 @@ namespace Mora
             this.tbMsgBox.TabIndex = 4;
             this.tbMsgBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbMsgBox_KeyUp);
             // 
-            // textBox1
+            // UserCardBox
             // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox1.Location = new System.Drawing.Point(55, 2);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(71, 28);
-            this.textBox1.TabIndex = 12;
+            this.UserCardBox.ForeColor = System.Drawing.Color.Transparent;
+            this.UserCardBox.Location = new System.Drawing.Point(29, 126);
+            this.UserCardBox.Name = "UserCardBox";
+            this.UserCardBox.Size = new System.Drawing.Size(200, 100);
+            this.UserCardBox.TabIndex = 12;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.UserCardBox);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pMsgBoxUser);
             this.Controls.Add(this.pMsgBox);
-            this.Controls.Add(this.UserCardBox);
             this.Controls.Add(this.tbMsgBox);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -131,13 +119,12 @@ namespace Mora
 
         #endregion
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.FlowLayoutPanel UserCardBox;
         private System.Windows.Forms.FlowLayoutPanel pMsgBox;
         private System.Windows.Forms.FlowLayoutPanel pMsgBoxUser;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TextBox tbMsgBox;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.FlowLayoutPanel UserCardBox;
     }
 }
 

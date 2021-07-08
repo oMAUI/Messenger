@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing;
+using System.Drawing.Drawing2D;
+using Mora_Messenger.Design.UIControls;
 
 namespace Mora_Messenger.Design.Button
 {
@@ -46,22 +48,24 @@ namespace Mora_Messenger.Design.Button
             Rectangle rec = new Rectangle(0, 0, Width - 1, Height - 1);
             Rectangle PhotoRec = new Rectangle(5, 5, Height - 10, Height - 10);
 
-            g.DrawRectangle(new Pen(perimiterColor), rec);
-            g.FillRectangle(new SolidBrush(BackColor), rec);
+            GraphicsPath path = Rounding.RoundedRectangle(rec, 30);
+
+            g.DrawPath(new Pen(perimiterColor), path);
+            g.FillPath(new SolidBrush(BackColor), path);
 
             g.DrawEllipse(new Pen(Color.FromArgb(172, 176, 189)), PhotoRec);
             g.FillEllipse(new SolidBrush(Color.FromArgb(172, 176, 189)), PhotoRec);
 
             if (MouseEntered)
             {
-                g.DrawRectangle(new Pen(Color.FromArgb(60, Color.White)), rec);
-                g.FillRectangle(new SolidBrush(Color.FromArgb(60, Color.White)), rec);
+                g.DrawPath(new Pen(Color.FromArgb(60, Color.White)), path);
+                g.FillPath(new SolidBrush(Color.FromArgb(60, Color.White)), path);
             }
 
             if (MousePressed)
             {
-                g.DrawRectangle(new Pen(Color.FromArgb(30, Color.White)), rec);
-                g.FillRectangle(new SolidBrush(Color.FromArgb(30, Color.White)), rec);
+                g.DrawPath(new Pen(Color.FromArgb(30, Color.White)), path);
+                g.FillPath(new SolidBrush(Color.FromArgb(30, Color.White)), path);
             }
 
             g.DrawString(Text, Font, new SolidBrush(ForeColor), rec, SF);

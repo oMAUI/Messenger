@@ -7,14 +7,20 @@ using System.Text;
 using System.Data;
 using Npgsql;
 using System.Windows.Forms;
+using System.Data.Common;
 
 namespace ServiceMessenger
 {
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public class ServiceChat : IServiceChat
     {
+        NpgsqlConnection pg;
+
         List<ServerUser> users = new List<ServerUser>();
         int connectionID = 1;
+        private object npgSqlCommand;
+
+        public string ConnectionString { get; private set; }
 
         public int Connection(string name)
         {
@@ -59,13 +65,14 @@ namespace ServiceMessenger
 
             ans += msg;
 
+            userTo.operationContext.GetCallbackChannel<ISrverChatCallBack>().MsgCallBack(ans, idFrom);
             userFrom.operationContext.GetCallbackChannel<ISrverChatCallBack>().MsgCallBack(ans, idFrom);
-            userTo.operationContext.GetCallbackChannel<ISrverChatCallBack>().MsgCallBack(ans, idTo);
+            
         }
 
         public bool DBconnection(string connStr) 
         {
-            NpgsqlConnection pg = new NpgsqlConnection(connStr);
+            pg = new NpgsqlConnection(connStr);
 
             pg.Open();
 
@@ -75,6 +82,57 @@ namespace ServiceMessenger
             }
 
             return true;
+        }
+
+        public bool AddUserInDB(string login, string password)
+        {
+            DBconnection("Server = 95.217.232.188; Port = 7777; Username = habitov; Password = habitov");
+
+            NpgsqlCommand comm = new NpgsqlCommand(
+                @"SELECT *
+                FROM usersmora
+                WHERE login like '" + login + "' and password like '" + password + "';", pg);
+
+            NpgsqlDataReader npgSqlDataReader = comm.ExecuteReader();
+            foreach (DbDataRecord record in npgSqlDataReader)
+            {
+                if (npgSqlDataReader.HasRows && (string)record["login"] == login && (string)record["password"] == password)
+                {
+                    //comm.ExecuteNonQuery();
+                    return false;
+                }
+            }
+
+            DBconnection("Server = 95.217.232.188; Port = 7777; Username = habitov; Password = habitov");
+
+            comm = new NpgsqlCommand(
+            @"INSERT into usersmora(login, password)
+            values('" + login + "', '" + password + "');", pg);
+
+            comm.ExecuteNonQuery();
+            return true;
+        }
+
+        public int LoginUser(string login, string password)
+        {
+            DBconnection("Server = 95.217.232.188; Port = 7777; Username = habitov; Password = habitov");
+
+            NpgsqlCommand comm = new NpgsqlCommand(
+                @"SELECT *
+                FROM usersmora
+                WHERE login like '" + login + "' and password like '" + password + "';", pg);
+
+            NpgsqlDataReader npgSqlDataReader = comm.ExecuteReader();
+            foreach(DbDataRecord record in npgSqlDataReader)
+            {
+                if (npgSqlDataReader.HasRows && (string)record["login"] == login && (string)record["password"] == password)
+                {
+                    //comm.ExecuteNonQuery();
+                    return (int)record["id"];
+                }
+            }
+            
+            return -1;
         }
     }
 }
