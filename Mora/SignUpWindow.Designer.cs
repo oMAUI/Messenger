@@ -1,6 +1,7 @@
 ﻿
 using Mora.Designs.Button;
 using Mora.Designs.UIcontrols;
+using System.Windows.Forms;
 
 namespace Mora
 {
@@ -33,12 +34,22 @@ namespace Mora
         private void InitializeComponent()
         {
             this.SuspendLayout();
-            tbLogin = new RegisterTextBox(false);
-            tbPass = new RegisterTextBox(true);
-
+            //
+            //lbCheck
+            //
+            lbCheck = new Label();
+            lbCheck.AutoSize = true;
+            lbCheck.Font = new System.Drawing.Font("Arial", 11.25F);
+            //
+            // tb
+            //
+            tbLogin = new RegisterTextBox();
+            tbPass = new RegisterTextBox();
+            //
+            // btnSignUp
+            //
             btnSignUp = new RegisterButton();
             btnSignUp.Click += new System.EventHandler(this.btnSignUp_Click);
-
             //
             // btnReg
             //
@@ -59,6 +70,8 @@ namespace Mora
             
 
         }
+        Label lbCheck;
+
         RegisterTextBox tbLogin;
         RegisterTextBox tbPass;
 

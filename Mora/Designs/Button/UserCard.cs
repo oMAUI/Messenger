@@ -19,6 +19,8 @@ namespace Mora_Messenger.Design.Button
         bool MouseEntered = false;
         bool MousePressed = false;
 
+        public int UserID { get; set; }
+
         public UserCard()
         {
             SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer | ControlStyles.ResizeRedraw | ControlStyles.SupportsTransparentBackColor | ControlStyles.UserPaint, true);

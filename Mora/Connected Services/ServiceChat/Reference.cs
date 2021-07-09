@@ -8,6 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.Collections.Generic;
+using System.Data.Common;
 using System.Threading.Tasks;
 
 namespace Mora.ServiceChat {
@@ -18,10 +20,10 @@ namespace Mora.ServiceChat {
     public interface IServiceChat {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceChat/Connection", ReplyAction="http://tempuri.org/IServiceChat/ConnectionResponse")]
-        int Connection(string login);
+        void Connection(string login, int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceChat/Connection", ReplyAction="http://tempuri.org/IServiceChat/ConnectionResponse")]
-        System.Threading.Tasks.Task<int> ConnectionAsync(string login);
+        System.Threading.Tasks.Task ConnectionAsync(string login, int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceChat/Diconnection", ReplyAction="http://tempuri.org/IServiceChat/DiconnectionResponse")]
         void Diconnection(int id);
@@ -48,10 +50,23 @@ namespace Mora.ServiceChat {
         System.Threading.Tasks.Task<bool> AddUserInDBAsync(string login, string password);
 
         [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IServiceChat/LoginUser")]
-        int LoginUser(string login, string password);
+        string[] LoginUser(string login, string password);
 
         [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IServiceChat/LoginUser")]
-        System.Threading.Tasks.Task<int> LoginUserAsync(string login, string password);
+        System.Threading.Tasks.Task<string[]> LoginUserAsync(string login, string password);
+
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IServiceChat/GetUserContact")]
+        byte[] GetUserContact(int id);
+
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IServiceChat/GetUserContact")]
+        Task<byte[]> GetUserContactAsync(int id);
+
+
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IServiceChat/GetMsgHistory", ReplyAction = "http://tempuri.org/IServiceChat/GetMsgHistoryResponse")]
+        byte[] GetMsgHistory(int senderID, int reciptientID);
+
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IServiceChat/GetMsgHistory", ReplyAction = "http://tempuri.org/IServiceChat/GetMsgHistoryResponse")]
+        System.Threading.Tasks.Task<byte[]> GetMsgHistoryAsync(int senderID, int reciptientID);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -89,12 +104,12 @@ namespace Mora.ServiceChat {
                 base(callbackInstance, binding, remoteAddress) {
         }
         
-        public int Connection(string login) {
-            return base.Channel.Connection(login);
+        public void Connection(string login, int id) {
+            base.Channel.Connection(login, id);
         }
-        
-        public System.Threading.Tasks.Task<int> ConnectionAsync(string login) {
-            return base.Channel.ConnectionAsync(login);
+
+        public System.Threading.Tasks.Task ConnectionAsync(string login, int id) {
+            return base.Channel.ConnectionAsync(login, id);
         }
         
         public void Diconnection(int id) {
@@ -132,14 +147,34 @@ namespace Mora.ServiceChat {
             return base.Channel.AddUserInDBAsync(login, password);
         }
 
-        public int LoginUser(string login, string password)
+        public string[] LoginUser(string login, string password)
         {
             return base.Channel.LoginUser(login, password);
         }
 
-        public System.Threading.Tasks.Task<int> LoginUserAsync(string login, string password)
+        public System.Threading.Tasks.Task<string[]> LoginUserAsync(string login, string password)
         {
             return base.Channel.LoginUserAsync(login, password);
+        }
+
+        public byte[] GetUserContact(int id)
+        {
+            return base.Channel.GetUserContact(id);
+        }
+
+        public Task<byte[]> GetUserContactAsync(int id)
+        {
+            return base.Channel.GetUserContactAsync(id);
+        }
+
+        public byte[] GetMsgHistory(int senderID, int reciptientID)
+        {
+            return base.Channel.GetMsgHistory(senderID, reciptientID);
+        }
+
+        public Task<byte[]> GetMsgHistoryAsync(int senderID, int reciptientID)
+        {
+            return base.Channel.GetMsgHistoryAsync(senderID, reciptientID);
         }
     }
 }

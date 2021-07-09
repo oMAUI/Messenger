@@ -45,6 +45,13 @@ namespace Mora.Designs.UIcontrols
             }
         }
 
+        [Browsable(true)]
+        public new event KeyEventHandler KeyUp
+        {
+            add { tbInput.KeyUp += value; }
+            remove { tbInput.KeyUp -= value; }
+        }
+
         public bool UseSystemPasswordChar
         {
             get => tbInput.UseSystemPasswordChar;
@@ -82,8 +89,7 @@ namespace Mora.Designs.UIcontrols
         StringFormat SF = new StringFormat();
 
         int TopBorderOffset = 0;
-
-        public bool PassChar { get; set; }
+        public int RoundingPrecent { get; set; }
 
         TextBox tbInput = new TextBox();
 
@@ -92,7 +98,7 @@ namespace Mora.Designs.UIcontrols
 
         #endregion
 
-        public RegisterTextBox(bool passChar)
+        public RegisterTextBox()
         {
             SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer | ControlStyles.ResizeRedraw | ControlStyles.SupportsTransparentBackColor | ControlStyles.UserPaint, true);
             DoubleBuffered = true;
@@ -107,13 +113,13 @@ namespace Mora.Designs.UIcontrols
             SF.Alignment = StringAlignment.Center;
             SF.LineAlignment = StringAlignment.Center;
 
-            PassChar = passChar;
-
             AdjustTextBoxInput();
             Controls.Add(tbInput);
 
             LocationTextPreviewAnim.Value = tbInput.Location.Y;
             FontSizeTextPreviewAnim.Value = Font.Size;
+
+            RoundingPrecent = 10;
         }
 
         protected override void OnCreateControl()
@@ -132,9 +138,6 @@ namespace Mora.Designs.UIcontrols
             tbInput.ForeColor = ForeColor;
             tbInput.Font = Font;
             tbInput.Visible = false;
-
-            if(PassChar)
-                tbInput.PasswordChar = '*';
 
             int offset = TextRenderer.MeasureText(TextPreview, FontTextPreview).Height / 2;
             tbInput.Location = new Point(5, Height / 2 - offset);
@@ -203,20 +206,27 @@ namespace Mora.Designs.UIcontrols
             Size TextPreviewRectSize = graph.MeasureString(TextPreview, FontTextPreviewActual).ToSize();
             Rectangle rectTextPreview = new Rectangle(5, (int)LocationTextPreviewAnim.Value, TextPreviewRectSize.Width + 3, TextPreviewRectSize.Height);
 
-            GraphicsPath pathBase = Rounding.RoundedRectangle(rectBase, 10);
-            GraphicsPath pathTextPrev = Rounding.RoundedRectangle(rectTextPreview, 10);
+            GraphicsPath pathBase = Rounding.RoundedRectangle(rectBase, RoundingPrecent);
+            GraphicsPath pathTextPrev = Rounding.RoundedRectangle(rectTextPreview, RoundingPrecent);
 
             // Обводка
             graph.DrawPath(new Pen(tbInput.Focused == true ? BorderColor : BorderColorNotActive), pathBase);
 
             // Заголовок/Описание
-            graph.DrawPath(new Pen(Parent.BackColor), pathTextPrev);
-            graph.FillPath(new SolidBrush(Parent.BackColor), pathTextPrev);
+            if(TextPreview.Length > 0)
+            {
+                graph.DrawPath(new Pen(Parent.BackColor), pathTextPrev);
+                graph.FillPath(new SolidBrush(Parent.BackColor), pathTextPrev);
+            }
 
             // Цвет внутри
             graph.FillPath(new SolidBrush(BackColor), pathBase);
 
-            graph.DrawString(TextPreview, FontTextPreviewActual, new SolidBrush(tbInput.Focused == true ? BorderColor : BorderColorNotActive), rectTextPreview, SF);
+            graph.SetClip(pathBase);
+            graph.SetClip(pathTextPrev);
+
+            if (TextPreview.Length > 0)
+                graph.DrawString(TextPreview, FontTextPreviewActual, new SolidBrush(tbInput.Focused == true ? BorderColor : BorderColorNotActive), rectTextPreview, SF);
         }
 
         private void TextPreviewAction(bool OnTop)

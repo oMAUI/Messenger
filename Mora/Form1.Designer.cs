@@ -35,8 +35,9 @@ namespace Mora
             this.pMsgBoxUser = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.tbMsgBox = new System.Windows.Forms.TextBox();
             this.UserCardBox = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.tbMesgBox = new Mora.Designs.UIcontrols.RegisterTextBox();
             this.SuspendLayout();
             // 
             // timer1
@@ -77,17 +78,6 @@ namespace Mora
             this.panel2.Size = new System.Drawing.Size(200, 100);
             this.panel2.TabIndex = 11;
             // 
-            // tbMsgBox
-            // 
-            this.tbMsgBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbMsgBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tbMsgBox.Location = new System.Drawing.Point(12, 378);
-            this.tbMsgBox.Multiline = true;
-            this.tbMsgBox.Name = "tbMsgBox";
-            this.tbMsgBox.Size = new System.Drawing.Size(507, 60);
-            this.tbMsgBox.TabIndex = 4;
-            this.tbMsgBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbMsgBox_KeyUp);
-            // 
             // UserCardBox
             // 
             this.UserCardBox.ForeColor = System.Drawing.Color.Transparent;
@@ -96,24 +86,50 @@ namespace Mora
             this.UserCardBox.Size = new System.Drawing.Size(200, 100);
             this.UserCardBox.TabIndex = 12;
             // 
+            // panel3
+            // 
+            this.panel3.Location = new System.Drawing.Point(525, 338);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(200, 100);
+            this.panel3.TabIndex = 11;
+            // 
+            // tbMesgBox
+            // 
+            this.tbMesgBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(48)))), ((int)(((byte)(71)))));
+            this.tbMesgBox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(158)))), ((int)(((byte)(188)))));
+            this.tbMesgBox.BorderColorNotActive = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(202)))), ((int)(((byte)(230)))));
+            this.tbMesgBox.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.tbMesgBox.Font = new System.Drawing.Font("Arial", 11.25F);
+            this.tbMesgBox.FontTextPreview = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold);
+            this.tbMesgBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(246)))), ((int)(((byte)(249)))));
+            this.tbMesgBox.Location = new System.Drawing.Point(52, 23);
+            this.tbMesgBox.Name = "tbMesgBox";
+            this.tbMesgBox.RoundingPrecent = 10;
+            this.tbMesgBox.Size = new System.Drawing.Size(150, 40);
+            this.tbMesgBox.TabIndex = 13;
+            this.tbMesgBox.TextInput = "";
+            this.tbMesgBox.TextPreview = "Input text";
+            this.tbMesgBox.UseSystemPasswordChar = false;
+            this.tbMesgBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.registerTextBox1_KeyUp);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.tbMesgBox);
+            this.Controls.Add(this.panel3);
             this.Controls.Add(this.UserCardBox);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pMsgBoxUser);
             this.Controls.Add(this.pMsgBox);
-            this.Controls.Add(this.tbMsgBox);
             this.Name = "Form1";
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -123,8 +139,9 @@ namespace Mora
         private System.Windows.Forms.FlowLayoutPanel pMsgBoxUser;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.TextBox tbMsgBox;
         private System.Windows.Forms.FlowLayoutPanel UserCardBox;
+        private System.Windows.Forms.Panel panel3;
+        private Designs.UIcontrols.RegisterTextBox tbMesgBox;
     }
 }
 

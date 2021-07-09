@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
@@ -12,7 +13,7 @@ namespace ServiceMessenger
     public interface IServiceChat
     {
         [OperationContract]
-        int Connection(string login);
+        void Connection(string login, int id);
 
         [OperationContract]
         void Diconnection(int id);
@@ -27,7 +28,13 @@ namespace ServiceMessenger
         bool AddUserInDB(string login, string password);
 
         [OperationContract]
-        int LoginUser(string login, string password);
+        string[] LoginUser(string login, string password);
+
+        [OperationContract]
+        byte[] GetUserContact(int id);
+
+        [OperationContract]
+        byte[] GetMsgHistory(int senderID, int reciptientID);
     }
 
     public interface ISrverChatCallBack
