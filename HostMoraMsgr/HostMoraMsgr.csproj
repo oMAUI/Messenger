@@ -120,6 +120,9 @@
     <None Include="HostMoraMsgr_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\webjob-publish-settings.json" />
+    <None Include="Settings.job">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ServiceMessenger\ServiceMessenger.csproj">

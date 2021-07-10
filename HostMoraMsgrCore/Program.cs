@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.ServiceModel;
@@ -7,67 +6,14 @@ using System.ServiceProcess;
 
 namespace HostMoraMsgrCore
 {
-    public class GenericServiceHost : ServiceBase
+    class Program
     {
-        private IHost _host;
-        private bool _stopRequestedByWindows;
-
-        public GenericServiceHost(IHost host)
+        static void Main(string[] args)
         {
-            _host = host ?? throw new ArgumentNullException(nameof(host));
-        }
-
-        protected sealed override void OnStart(string[] args)
-        {
-            OnStarting(args);
-
-            _host
-                .Services
-                .GetRequiredService<IApplicationLifetime>()
-                .ApplicationStopped
-                .Register(() =>
-                {
-                    if (!_stopRequestedByWindows)
-                    {
-                        Stop();
-                    }
-                });
-
-            _host.Start();
-
-            OnStarted();
-        }
-
-        protected sealed override void OnStop()
-        {
-            _stopRequestedByWindows = true;
-            OnStopping();
-            try
-            {
-                _host.StopAsync().GetAwaiter().GetResult();
-            }
-            finally
-            {
-                _host.Dispose();
-                OnStopped();
-            }
-        }
-
-        protected virtual void OnStarting(string[] args) { }
-
-        protected virtual void OnStarted() { }
-
-        protected virtual void OnStopping() { }
-
-        protected virtual void OnStopped() { }
-    }
-
-    public static class GenericHostWindowsServiceExtensions
-    {
-        public static void RunAsService(this IHost host)
-        {
-            var hostService = new GenericServiceHost(host);
-            ServiceBase.Run(hostService);
+            //ServiceHost host = new ServiceHost();
+            //Console.WriteLine("OK!");
+            //Console.Read();
+            
         }
     }
 }
