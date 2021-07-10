@@ -209,7 +209,7 @@ namespace ServiceMessenger
                 "SELECT * " +
                 "FROM msg_histories " +
                 "WHERE " + senderID.ToString() + " = sender_id AND " + reciptientID.ToString() + " = recipient_id OR " + 
-                           reciptientID.ToString() + " = sender_id AND " + senderID.ToString() + " = recipient_id" , pg
+                           reciptientID.ToString() + " = sender_id AND " + senderID.ToString() + " = recipient_id", pg
                 );
 
             NpgsqlDataReader reader = comm.ExecuteReader();

@@ -17,6 +17,7 @@ namespace HostMoraMsgr
                 Console.WriteLine("OK!");
                 Console.Read();
             }
+            ServiceHost
         }
     }
 }

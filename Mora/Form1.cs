@@ -27,7 +27,6 @@ namespace Mora
         SignUpWindow signUpWindow;
 
         List<UserCard> userCard = new List<UserCard>();
-        List<string> name = new List<string>() { "salim", "valera", "islam", "mam", "pap", "liana", "Inal", "pirt", "sirt", "cirt", "lala", "topala" };
 
         Color sidebar = Color.FromArgb(14, 22, 28);
 
@@ -61,7 +60,6 @@ namespace Mora
 
         public void MsgCallBack(string msg, int id)
         {
-            
             drawMsgBox(id, msg);
         }
 
@@ -140,7 +138,6 @@ namespace Mora
             mainCard.Font = new Font("Arial", 17.25F, FontStyle.Regular);
             mainCard.ForeColor = Color.FromArgb(241, 250, 238);
             mainCard.Text = login;
-            mainCard.Text = "asdasd";
             Controls.Add(mainCard);
 
             List<List<string[]>> userContact;
