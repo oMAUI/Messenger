@@ -23,7 +23,6 @@ namespace Mora
         UserCard mainCard;
 
         ServiceChatClient client;
-        private LayOutForm1 layOut;
         SignUpWindow signUpWindow;
 
         List<UserCard> userCard = new List<UserCard>();
@@ -54,8 +53,6 @@ namespace Mora
             this.UserCardBox.HorizontalScroll.Visible = false;
 
             signUpWindow = new SignUpWindow();
-
-            //pMsgBox.Visible = false;
         }
 
         public void MsgCallBack(string msg, int id)
@@ -65,7 +62,7 @@ namespace Mora
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //client.Diconnection(id);
+            client.Diconnection(id);
         }
 
         public static void GetData(string[] userData)
@@ -96,8 +93,6 @@ namespace Mora
             client = new ServiceChatClient(new System.ServiceModel.InstanceContext(this));
             client.Connection(login, id);
 
-            //bool db = client.DBconnection("Server=95.217.232.188;Port=7777;Username=habitov;Password=habitov");
-
             timer1.Enabled = true;
 
             tbMesgBox.BackColor = Color.FromArgb(54, 62, 68);
@@ -117,7 +112,6 @@ namespace Mora
             pMsgBoxUser.Size = new Size(this.Width / 4, this.Height - 150);
             pMsgBoxUser.Location = new Point(this.Width * 3 / 4 - 10, 10);
 
-            //UserCardBox.BackColor = sidebar;
             UserCardBox.Size = new Size(this.Width / 4 + 5, this.Height - 150);
             UserCardBox.Location = new Point(0, 110);
 
@@ -150,12 +144,10 @@ namespace Mora
                 for (int i = 0; i < list.Count; i++)
                 {
                     UserCard uCard = new UserCard();
-                    //uCard.Location = new Point(10, 500);
                     uCard.Text = list[i][1];
                     uCard.UserID = int.Parse(list[i][0]);
                     uCard.Name = list[i][1] + list[i][0];
                     uCard.Click += new EventHandler(uCard_Click);
-                    //uCard.Visible = true;
                     userCard.Add(uCard);
                     UserCardBox.Controls.Add(uCard);
                 }
@@ -163,17 +155,6 @@ namespace Mora
         }
 
         #region Design
-
-        private void drawLayOut(Graphics g)
-        {
-            layOut = new LayOutForm1();
-
-            //layOut.Panel(g, 0, 0, this.Width / 4 - 10, this.Height, 14, 22, 28);
-            //layOut.Panel(g, 0, 0, this.Width / 4 - 10, 100, 61, 90, 128);
-            //layOut.Panel(g, this.Width / 4 + 1, this.Height - 120, this.Width * 3 / 4, 120, 44, 52, 58);
-
-            //layOut.EllipseMsg(g, this.Width / 4 + 1 + 10, this.Height - 105, this.Width * 3 / 4 - 40, 50, 54, 62, 68);
-        }
 
         public void drawMsgBox(int id, string msg)
         {
@@ -228,7 +209,6 @@ namespace Mora
             {
                 client.SendMsg(tbMesgBox.Text, id, SelectUserID);
                 tbMesgBox.Text = "";
-                //drawMsgBox(1, tbMesgBox.Text);
             }
         }
 
@@ -236,9 +216,9 @@ namespace Mora
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-            drawLayOut(e.Graphics);
+
         }
-        int asd;
+
         private void timer1_Tick(object sender, EventArgs e)
         {
             Invalidate();
