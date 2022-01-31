@@ -7,14 +7,10 @@
 //     повторной генерации кода.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
-using System.Collections.Generic;
-using System.Data.Common;
 using System.Threading.Tasks;
 
 namespace Mora.ServiceChat {
-    
-    
+
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceChat.IServiceChat", CallbackContract=typeof(Mora.ServiceChat.IServiceChatCallback))]
     public interface IServiceChat {
