@@ -8,10 +8,9 @@ import (
 )
 
 func main() {
-
-	conn, _ := net.Dial("tcp", "localhost:3033sa") // открываем TCP-соединение к серверу
-	go copyTo(os.Stdout, conn)                     // читаем из сокета в stdout
-	copyTo(conn, os.Stdin)                         // пишем в сокет из stdin
+	conn, _ := net.Dial("tcp", "localhost:3033") // открываем TCP-соединение к серверу
+	go copyTo(os.Stdout, conn)                   // читаем из сокета в stdout
+	copyTo(conn, os.Stdin)                       // пишем в сокет из stdin
 }
 
 func copyTo(dst io.Writer, src io.Reader) {
